@@ -18,6 +18,8 @@ No custom domain, credit card, Google Maps key or GitHub Actions workflow file i
 
 Update source or approved photos in the same repository and commit to the publishing branch. GitHub Pages republishes that source. Check the Pages deployment result, then test the changed routes on the live site. Keep the repository and local working copy aligned; avoid making conflicting edits in two places.
 
+When changing CSS or the main JavaScript, update the matching `?v=` release value in `index.html` (currently `0.1.1`) and the package version. This makes returning browsers request the matching updated interface files. Use a new descriptive filename for a replaced photo, then update `image.src`.
+
 ## Troubleshooting
 
 - **404 at the site root:** check Settings → Pages, branch, root folder and the presence of a lowercase `index.html` at that source root.
@@ -31,4 +33,12 @@ Update source or approved photos in the same repository and commit to the publis
 - [Creating a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)
 - [Configuring a publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)
 
-Deployment has not been completed by these instructions alone. Record the actual repository URL, live URL and deployment result in `PROJECT-DECISIONS.md` once available.
+## Published prototype
+
+Verified on 24 October 2026:
+
+- Repository: https://github.com/Lungelo-gif/apb-first-year-visual-navigator
+- Live site: https://lungelo-gif.github.io/apb-first-year-visual-navigator/
+- Source: `main` at `/ (root)`, branch-based publication with HTTPS.
+
+The site is deployed with unverified sample routes and illustrative placeholders. Actual phone, campus-route and full accessibility reviews remain separate from deployment verification.

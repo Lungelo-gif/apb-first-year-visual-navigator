@@ -27,10 +27,15 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 4. Ran 18 passing route/data checks, including eight start-to-destination combinations.
 5. Added photo replacement instructions, route authoring guidance and a photography checklist.
 6. Added foundational accessibility controls, Help/About, local feedback and the FYO explanation.
+7. Created the public repository under the confirmed owner, Lungelo-gif, and enabled GitHub Pages from main at the root.
+8. Verified eight live sample journeys, search, navigation, arrival, feedback download and invalid-URL recovery.
+9. Checked six screens at five viewport widths using tests/responsive.html, fixed the keyboard skip link, and placed the exact disclaimer near the top of every screen.
+10. Versioned CSS and main JavaScript URLs as 0.1.1 so updated entry pages request matching assets.
 
 ## Pending verification and content
 
-- Browser/phone testing and measured contrast review. The workspace’s managed preview service is unavailable (missing preview daemon mailbox); do not claim browser QA passed.
+- Physical iPhone/Safari, VoiceOver and a complete accessibility audit remain pending. Live Chrome testing and common rendered-text contrast measurements are complete.
+- Loading under throttled conditions and deliberate missing-image/data failure injection remain manual checklist items.
 - Exact official/public starting point and its photo.
 - Exact computer laboratory building and room.
 - Exact classroom building and room.
@@ -44,10 +49,10 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 - Confirmed owner: `Lungelo-gif`, selected by the project creator.
 - Repository: `apb-first-year-visual-navigator` (public).
 - Repository URL: https://github.com/Lungelo-gif/apb-first-year-visual-navigator
-- Publishing source: intended `main` at `/ (root)`.
-- Live GitHub Pages URL: pending verification.
-- Deployment status: source upload and Pages configuration in progress.
+- Publishing source: `main` at `/ (root)`.
+- Live GitHub Pages URL: https://lungelo-gif.github.io/apb-first-year-visual-navigator/
+- Deployment status: live; the deployed app was opened and its sample journeys verified on 24 October 2026.
 
 ## Next working session
 
-Upload the reviewed source, enable Pages from `main` at `/ (root)`, verify its returned deployment URL, and test all four sample routes in the browser. Test on an actual phone before calling the mobile experience verified. When real campus details and photographs arrive, replace data/assets and validate every route before removing sample labels.
+Test the live site on an actual iPhone/Safari and with VoiceOver. Complete the remaining manual error/loading checks. Gather the exact APB start, laboratory, classroom and approved photos, then update data/assets and walk every route before removing sample labels. Use the existing repository and Pages site; do not create another repository for normal updates.
