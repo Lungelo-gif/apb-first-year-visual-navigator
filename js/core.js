@@ -4,10 +4,16 @@ export function validateData(locations, graph) {
   if (locations.schemaVersion !== 1 || graph.schemaVersion !== 1) fail('unsupported schema version.');
   if (!Array.isArray(locations.starts) || !locations.starts.length || !Array.isArray(locations.destinations) || !locations.destinations.length) fail('locations are missing.');
   if (!graph.nodes || !Array.isArray(graph.routes)) fail('nodes or routes are missing.');
+  const validateImage = (image, label) => {
+    if (!image?.src || !image.alt || typeof image.isPlaceholder !== 'boolean') fail(`incomplete image at ${label}.`);
+    if (!/^assets\/images\/[a-zA-Z0-9_./-]+\.(svg|jpg|jpeg|webp|png)$/.test(image.src) || image.src.includes('..')) fail(`unsafe image path at ${label}.`);
+  };
+  if (locations.campusImage) validateImage(locations.campusImage, 'campus reference');
   const unique = (items, label) => { if (new Set(items.map(x => x.id)).size !== items.length) fail(`duplicate ${label} IDs.`); };
   unique(locations.starts, 'start'); unique(locations.destinations, 'destination'); unique(graph.routes, 'route');
   for (const location of [...locations.starts, ...locations.destinations]) {
     if (!location.id || !location.name) fail('a location has no ID or name.');
+    if (location.image) validateImage(location.image, location.id);
   }
   for (const start of locations.starts) if (!graph.nodes[start.nodeId]) fail(`unknown start node ${start.nodeId}.`);
   for (const [id, node] of Object.entries(graph.nodes)) {
