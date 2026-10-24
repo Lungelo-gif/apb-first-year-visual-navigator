@@ -1,6 +1,6 @@
 # Testing checklist
 
-## Current results — 24 October 2026
+## Initial release results — 24 October 2026
 
 `npm test`: **18 checks passed**. `npm run check`: JavaScript syntax checks passed. The checks cover all four destinations from both sample starts (eight paths), shared-node reuse, terminal public security endpoint, existing image files, search aliases, no-result searches, cycles, disconnected nodes, invalid data and HTML escaping.
 
@@ -20,7 +20,11 @@ The user requested four supplied images and a UJ-inspired orange, charcoal and w
 
 ## Version 0.3 map and immersive-walk update
 
-Implemented a draggable/zoomable schematic map, searchable destination list, keyboard-accessible SVG pins, highlighted route overview and a still-image viewer with Forward/Back arrows directly over the image. Added data/map.json, js/map-view.js and css/navigator.css. Route graph and supplied reference photographs remain separate and unchanged. `npm test`: 21 checks passed, including map-position validation. JavaScript syntax checks passed. Live browser checks for this release are pending publication; earlier results describe the preceding interface.
+Implemented a draggable/zoomable schematic map, searchable destination list, keyboard-accessible SVG pins, highlighted route overview and a still-image viewer with Forward/Back arrows directly over the image. Added data/map.json, js/map-view.js and css/navigator.css. Route graph and supplied reference photographs remain separate and unchanged. `npm test`: 21 checks passed, including map-position validation. JavaScript syntax checks passed.
+
+Published and opened version 0.3 on GitHub Pages. Live Chrome checks passed for all eight start/destination combinations: every checkpoint image loaded, step counts matched, the first Back control was disabled and all arrivals showed the correct destination. Search filtered both the list and pins; clearing restored all four. Destination-pin selection, highlighted route, zoom/reset, map dragging, on-image Forward/Back, keyboard ArrowUp and Escape exit were checked. A test initially read an image before its loading state finished; waiting for the loading indicator to clear confirmed the image loaded successfully.
+
+Home/map, route overview, photo walk, arrival, Help and feedback had no horizontal overflow at 320, 375, 390, 768 and 1,440 CSS pixels. Screenshots of the phone map, phone viewer, desktop route map and desktop viewer were inspected. Phone photo arrows measured 75 px high and the instruction dock remained inside the 844 px test viewport. Browser extension errors were present; no application-origin error was observed. These are browser-responsive checks, not physical iPhone/Safari or VoiceOver verification. Deliberate missing-image/data failure injection, throttled loading and the other unchecked manual items below remain pending. The local managed preview service was unavailable, so browser checks used the real Pages deployment.
 
 Manual release checks: map search and pin selection, both origins, zoom/reset, map drag, each destination’s route overview, Forward/Back and Previous/Next controls, keyboard arrows/Escape, arrival/return, small-screen overlap and visibility, image/error states, Help and feedback. Check that the sample map notice, still-photo-demo label and exact student disclaimer stay visible.
 

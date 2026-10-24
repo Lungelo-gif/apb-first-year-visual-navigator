@@ -41,6 +41,8 @@ The user originally pictured a Google Maps-like navigation experience with a Str
 
 The map is a draggable, zoomable schematic sample stored in data/map.json, not an APB survey. All pins, routes and map positions remain unverified. The viewer uses ordinary still images and clearly states that it is a still-photo demo. It does not simulate panoramic look-around or claim actual 360° capture. Keep the supplied reference photos, graph reuse, keyboard controls, exact disclaimer, free static architecture and existing GitHub Pages site. No Google API, Google imagery, live GPS or new backend was added.
 
+Version 0.3 was published to the existing GitHub Pages site on 24 October 2026. All 21 automated route/data checks and JavaScript syntax checks passed. Live Chrome testing completed all eight sample journeys and checked map search, pins, drag, zoom/reset, Forward/Back, keyboard navigation and exit. The six main screens had no horizontal overflow at five phone/tablet/desktop widths. Physical iPhone/Safari, VoiceOver and real-campus verification remain pending. Source changes were compared with the repository using Git blob hashes.
+
 ## Pending verification and content
 
 - Physical iPhone/Safari, VoiceOver and a complete accessibility audit remain pending. Live Chrome testing and common rendered-text contrast measurements are complete.
