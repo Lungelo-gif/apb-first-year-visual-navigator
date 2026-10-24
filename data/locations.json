@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "starts": [
+    { "id": "sample-entrance", "name": "Sample campus entrance", "nodeId": "shared-start", "note": "Illustrative starting point — exact APB location to be confirmed." },
+    { "id": "sample-walkway", "name": "Sample central walkway", "nodeId": "shared-walkway", "note": "Illustrative alternative start — exact APB location to be confirmed." }
+  ],
+  "destinations": [
+    { "id": "library", "name": "APB Library", "category": "Study & resources", "icon": "book", "color": "sage", "description": "Find your way to a place for learning.", "keywords": ["books", "study", "reading", "resources"], "info": "This demonstrates a route to a library entrance. The actual public entrance, opening hours and access information still need to be confirmed.", "endpoint": "Public library entrance — to be confirmed", "accessibility": "The route has not been surveyed for step-free access." },
+    { "id": "security", "name": "APB Protection Services", "category": "Security & assistance", "icon": "shield", "color": "peach", "description": "Locate the public security service entrance.", "keywords": ["security", "protection", "help", "office"], "info": "The real route must stop at the public entrance or official sign. This prototype does not show the inside of the office, security equipment or access-control details. Ask campus staff for official assistance.", "endpoint": "Public entrance or official sign only", "accessibility": "The route has not been surveyed for step-free access." },
+    { "id": "computer-lab", "name": "APB Computer Laboratory", "category": "Computers & learning", "icon": "monitor", "color": "lavender", "description": "Get to your selected computer lab.", "keywords": ["computer", "lab", "laboratory", "pc", "technology"], "info": "The laboratory building, room number, public approach and access requirements are to be confirmed. No computer screens or personal information should appear in route photos.", "endpoint": "Selected computer lab — to be confirmed", "accessibility": "The route has not been surveyed for step-free access." },
+    { "id": "classroom", "name": "APB Classroom", "category": "Lectures & classes", "icon": "classroom", "color": "sand", "description": "Feel a little more ready for your first class.", "keywords": ["lecture", "class", "classroom", "room", "teaching"], "info": "The classroom building and room number are to be confirmed. Check your timetable and official room signage before following a future verified route.", "endpoint": "Selected classroom — to be confirmed", "accessibility": "The route has not been surveyed for step-free access." }
+  ]
+}
