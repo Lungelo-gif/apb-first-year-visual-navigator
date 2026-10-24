@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "width": 1000,
+  "height": 700,
+  "notice": "Sample layout · not an APB survey · not to scale",
+  "nodes": {
+    "shared-start": { "x": 140, "y": 590 },
+    "shared-walkway": { "x": 340, "y": 590 },
+    "shared-junction": { "x": 500, "y": 410 },
+    "library-turn": { "x": 500, "y": 250 },
+    "library-approach": { "x": 615, "y": 250 },
+    "library-arrival": { "x": 690, "y": 200 },
+    "security-approach": { "x": 200, "y": 410 },
+    "security-arrival": { "x": 170, "y": 315 },
+    "lab-turn": { "x": 650, "y": 410 },
+    "lab-approach": { "x": 780, "y": 410 },
+    "lab-arrival": { "x": 825, "y": 320 },
+    "classroom-approach": { "x": 560, "y": 560 },
+    "classroom-arrival": { "x": 700, "y": 560 }
+  },
+  "buildings": [
+    { "x": 600, "y": 90, "width": 200, "height": 85 },
+    { "x": 75, "y": 195, "width": 205, "height": 90 },
+    { "x": 750, "y": 195, "width": 185, "height": 95 },
+    { "x": 650, "y": 465, "width": 195, "height": 65 },
+    { "x": 340, "y": 120, "width": 105, "height": 135 },
+    { "x": 270, "y": 320, "width": 125, "height": 65 },
+    { "x": 320, "y": 475, "width": 105, "height": 60 }
+  ],
+  "labels": {
+    "library": ["Library"],
+    "security": ["Protection", "Services"],
+    "computer-lab": ["Computer lab"],
+    "classroom": ["Classroom"]
+  }
+}
