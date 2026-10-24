@@ -28,10 +28,12 @@
     <p class="note">It checks responsive layouts, not physical-device behaviour, GPS, campus accuracy or accessibility certification.</p>
     <div class="controls"><label for="preview-width">Preview width</label><select id="preview-width"><option value="320">320 px — small phone</option><option value="375" selected>375 px — phone</option><option value="390">390 px — phone</option><option value="768">768 px — tablet</option><option value="1440">1440 px — desktop</option></select><span id="preview-status" role="status">375 × 844 CSS pixels</span><a href="../index.html">Open the application normally</a></div>
   </header>
-  <main id="preview-stage"><div class="device"><iframe id="device-preview" src="../index.html" title="APB Visual Navigator responsive preview" width="375" height="844"></iframe></div></main>
+  <main id="preview-stage"><div class="device"><iframe id="device-preview" title="APB Visual Navigator responsive preview" width="375" height="844"></iframe></div></main>
   <script>
     const widthControl = document.querySelector('#preview-width');
     const preview = document.querySelector('#device-preview');
+    // Always inspect the current entry page rather than a cached test-session copy.
+    preview.src = `../index.html?layout-preview=${Date.now()}`;
     widthControl.addEventListener('change', () => {
       preview.style.width = `${Number(widthControl.value)}px`;
       document.querySelector('#preview-status').textContent = `${widthControl.value} × 844 CSS pixels`;
