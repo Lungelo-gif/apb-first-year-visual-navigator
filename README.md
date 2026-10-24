@@ -4,13 +4,13 @@
 
 [Open the live prototype](https://lungelo-gif.github.io/apb-first-year-visual-navigator/) · [Source repository](https://github.com/Lungelo-gif/apb-first-year-visual-navigator)
 
-A mobile-first, static prototype for first-year students at Auckland Park Bunting Road Campus. It brings destination search, short written directions and sequential visual checkpoints into one experience. It complements UJ’s existing Wayfinder application and separate virtual campus tours.
+A mobile-first, static prototype for first-year students at Auckland Park Bunting Road Campus. It brings a map-first destination search, a route preview and an immersive photo walk into one experience. It complements UJ’s existing Wayfinder application and separate virtual campus tours.
 
 ## Current status
 
-Version 0.2 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. User-supplied campus, library, public Protection Services sign and lecture-room images are temporary references with unverified locations. The computer lab and all walking checkpoint images remain illustrative placeholders. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
+Version 0.3 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. User-supplied campus, library, public Protection Services sign and lecture-room images are temporary references with unverified locations. The computer lab and all walking checkpoint images remain illustrative placeholders. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
 
-The visual flow uses wide still photographs with Previous and Next controls. It is not a true 360° system and does not detect your physical location. An arrival screen confirms the end of the sequence only.
+The main screen is a draggable, zoomable sample layout with destination pins and search. A selected route appears on that layout; “Start photo walk” opens a large still-image viewer with Forward/Back arrows over the image, Previous/Next controls and written directions. The layout is illustrative, not an APB survey or geographic map. It is not a true 360° system and does not detect your physical location. An arrival screen confirms the end of the sequence only.
 
 ## Try it locally
 
@@ -32,7 +32,8 @@ There are no npm dependencies to install. For a repeatable phone-width preview, 
 
 ## What works
 
-- Search by destination name, category or keyword; choose either sample starting location.
+- Search by destination name, category or keyword, or select a map pin; choose either sample starting location.
+- Drag and zoom the illustrative layout, then review the highlighted sample route.
 - Review a route summary, checkpoint list and unverified access information.
 - Follow large checkpoint images, written directions, overlay arrows and labelled Previous/Next buttons.
 - Track progress, return to previous checkpoints, exit and reach an arrival screen.
@@ -46,11 +47,14 @@ The app has no live GPS, analytics, third-party fonts, remote image requests, pa
 
 ```text
 index.html
-css/styles.css
+css/styles.css               Shared theme, content and forms
+css/navigator.css            Map and immersive-viewer layouts
+js/map-view.js               Accessible SVG sample map
 js/app.js                    Interface, loading, URL state and controls
 js/core.js                   Data validation, search and graph traversal
 data/locations.json          Starting points and destination information
 data/routes.json             Shared nodes, connections and allowed route nodes
+data/map.json                Relative drawing positions for the sample layout
 assets/favicon.svg           Original neutral navigation symbol
 assets/images/placeholders/  Lightweight original SVG checkpoint illustrations
 assets/images/references/    Supplied reference photos, separate from route photos
@@ -68,7 +72,7 @@ package.json                 Optional local development/check commands
 
 Starting locations refer to checkpoint node IDs. Each node has a photo, a direction, a landmark and a list of next node IDs. Each destination route identifies its arrival node and allowed nodes. A breadth-first traversal finds the connected sequence within those allowed nodes. This is an authored demonstration graph, not a geographic or safety-aware routing engine.
 
-All four routes reuse `shared-start → shared-walkway → shared-junction`. Changing a shared node updates all routes using it. Choosing the sample central walkway starts at `shared-walkway`, omitting the entrance checkpoint. Shared instructions must apply to every route using that node; put a destination-specific turn in a branch node.
+The sample layout is drawn from relative X/Y positions in `data/map.json`; they are not latitude/longitude or verified campus coordinates. All four routes reuse `shared-start → shared-walkway → shared-junction`. Changing a shared node updates all routes using it. Choosing the sample central walkway starts at `shared-walkway`, omitting the entrance checkpoint. Shared instructions must apply to every route using that node; put a destination-specific turn in a branch node.
 
 ## Handover guides
 
@@ -79,6 +83,10 @@ All four routes reuse `shared-start → shared-walkway → shared-junction`. Cha
 - [GitHub Pages deployment](docs/DEPLOYMENT.md)
 - [Short FYO explanation and future authorised 360° version](docs/FYO-EXPLANATION.md)
 - [Decisions, open details and next steps](docs/PROJECT-DECISIONS.md)
+
+## The 360° camera vision
+
+The user’s vision is a familiar map-to-immersive-walk experience: choose a place on a simple map, enter the visual viewer and move forward or backward with arrows. This prototype demonstrates that interaction for a presentation or request for a 360° camera. It currently uses still images, so it cannot look around a panorama. A future authorised version can keep the connected checkpoint graph and replace still-image rendering with genuine captured panoramas and approved hotspots. No Google map tiles, Google application assets, live GPS or paid map API are used.
 
 ## Before a real campus trial
 

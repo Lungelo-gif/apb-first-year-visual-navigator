@@ -7,8 +7,9 @@
   <meta name="description" content="A student proof of concept for finding your way around APB with written directions and visual checkpoints. All current routes are unverified samples.">
   <title>APB First-Year Visual Navigator</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=0.2.0">
-  <script type="module" src="js/app.js?v=0.2.0"></script>
+  <link rel="stylesheet" href="css/styles.css?v=0.3.0">
+  <link rel="stylesheet" href="css/navigator.css?v=0.3.0">
+  <script type="module" src="js/app.js?v=0.3.0"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -20,11 +21,11 @@
       </a>
       <div class="sidebar-label">YOUR CAMPUS COMPANION</div>
       <nav class="main-nav">
-        <a href="#home" data-nav="home"><span data-icon="compass"></span> Destinations <span class="nav-dot"></span></a>
+        <a href="#home" data-nav="home" aria-label="Map and destinations"><span data-icon="map"></span> Map <span class="nav-dot"></span></a>
         <a href="#help" data-nav="help"><span data-icon="help"></span> Help & about</a>
-        <a href="#feedback" data-nav="feedback"><span data-icon="message"></span> Share feedback</a>
+        <a href="#feedback" data-nav="feedback"><span data-icon="message"></span> Feedback</a>
       </nav>
-      <div class="sidebar-bottom"><div class="tiny-map" aria-hidden="true"><span class="map-path"></span><span class="map-pin">↗</span></div><strong>A new place. A fresh start.</strong><p>A little guidance for your first steps on campus.</p><span class="version-pill">STUDENT PROTOTYPE · V0.2</span></div>
+      <div class="sidebar-bottom"><div class="tiny-map" aria-hidden="true"><span class="map-path"></span><span class="map-pin">↗</span></div><strong>A new place. A fresh start.</strong><p>A little guidance for your first steps on campus.</p><span class="version-pill">STUDENT PROTOTYPE · V0.3</span></div>
     </aside>
     <div class="workspace">
       <header class="topbar"><span class="campus-tag"><span class="status-dot"></span> Auckland Park Bunting Road <span class="campus-short">Campus</span></span><a class="top-help" href="#help"><span data-icon="help"></span><span>Need a hand?</span></a></header>
