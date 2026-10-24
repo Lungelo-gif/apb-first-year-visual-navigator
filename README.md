@@ -8,7 +8,7 @@ A mobile-first, static prototype for first-year students at Auckland Park Buntin
 
 ## Current status
 
-Version 0.1 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. All images are original illustrative placeholders, not APB photographs. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
+Version 0.2 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. User-supplied campus, library, public Protection Services sign and lecture-room images are temporary references with unverified locations. The computer lab and all walking checkpoint images remain illustrative placeholders. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
 
 The visual flow uses wide still photographs with Previous and Next controls. It is not a true 360° system and does not detect your physical location. An arrival screen confirms the end of the sequence only.
 
@@ -40,7 +40,7 @@ There are no npm dependencies to install. For a repeatable phone-width preview, 
 - Use semantic controls, visible keyboard focus, a skip link, alternative text and reduced-motion support.
 - Recover from unavailable route data, invalid URLs, missing images and empty search results.
 
-The app has no live GPS, analytics, third-party fonts, external imagery, payments, login, service worker or database. Feedback is **not** submitted online. Hosting providers still handle ordinary HTTP requests. Route choices appear in the URL and browser history; they are not stored in a separate application database.
+The app has no live GPS, analytics, third-party fonts, remote image requests, payments, login, service worker or database. Supplied reference photographs are stored as compressed local assets. Feedback is **not** submitted online. Hosting providers still handle ordinary HTTP requests. Route choices appear in the URL and browser history; they are not stored in a separate application database.
 
 ## Project structure
 
@@ -52,7 +52,8 @@ js/core.js                   Data validation, search and graph traversal
 data/locations.json          Starting points and destination information
 data/routes.json             Shared nodes, connections and allowed route nodes
 assets/favicon.svg           Original neutral navigation symbol
-assets/images/placeholders/  Lightweight original SVG illustrations
+assets/images/placeholders/  Lightweight original SVG checkpoint illustrations
+assets/images/references/    Supplied reference photos, separate from route photos
 assets/images/apb-routes/    Add approved real photographs here
 docs/                       Content, photography, testing and deployment guides
 tests/routes.test.js         Route integrity and error-handling checks
@@ -72,6 +73,7 @@ All four routes reuse `shared-start → shared-walkway → shared-junction`. Cha
 ## Handover guides
 
 - [Add or update routes and photographs](docs/ROUTES-AND-PHOTOS.md)
+- [Reference image notes and future replacements](docs/REFERENCE-IMAGES.md)
 - [Photography checklist](docs/PHOTOGRAPHY-CHECKLIST.md)
 - [Testing checklist and current results](docs/TESTING.md)
 - [GitHub Pages deployment](docs/DEPLOYMENT.md)
@@ -82,6 +84,6 @@ All four routes reuse `shared-start → shared-walkway → shared-junction`. Cha
 
 Confirm the start, destination signs, public access and every walking instruction with appropriate campus staff. Survey accessibility; do not imply step-free access without verification. Walk and review every route in both the app and real surroundings. Replace all placeholders, remove sensitive photo details and strip location metadata before uploading. Do not publish identifiable faces without permission, student cards, information on screens, vehicle registrations, security equipment, access controls or restricted areas.
 
-Protection Services must end at the **public entrance or official sign**. It must never show the inside of the office. Keep the student disclaimer visible. Use a neutral visual identity; no UJ logos, copied protected imagery or copied application design are included.
+Protection Services must end at the **public entrance or official sign**. It must never show the inside of the office. Keep the student disclaimer visible. The interface uses a UJ-inspired orange, charcoal and white palette with its own navigation symbol. No standalone UJ logo or official application design was added. Supplied photos may show public signs; their source permissions and APB locations remain to be confirmed.
 
 Do not add real contacts, opening hours, distances, room numbers or walking times until verified. Physical routes, accessibility, image permission and official endorsement have not been verified by this prototype.
