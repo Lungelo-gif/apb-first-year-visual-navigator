@@ -33,6 +33,7 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.2.0.
 11. Added four user-supplied reference images on 24 October 2026: campus buildings, library, public Protection Services sign and lecture room. The campus image is a building-only crop and the security image is a public-sign-only crop.
 12. Store references in assets/images/references/ and destination/campus image metadata in locations.json. Reference images appear on home cards, summaries and arrival screens. All walking checkpoint nodes and route instructions remain sample data; the computer lab keeps its existing placeholder.
+13. Verified the deployed version 0.2: all four destination photo journeys work, the six main screens fit five tested viewport widths, and the common notice/button/footer contrast ratios remain readable. All 33 release files matched the working source.
 
 ## Pending verification and content
 
