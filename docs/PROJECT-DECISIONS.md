@@ -10,7 +10,7 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 - Exact visible disclaimer: **Student proof of concept — not an official University of Johannesburg service.**
 - HTML, CSS, plain JavaScript modules and separate JSON; free GitHub Pages target.
 - No framework, login, payments, database, live GPS, analytics or paid API in the MVP.
-- Neutral forest-green, lime and cream identity; original vector placeholder illustrations; no UJ logo or copied design.
+- Updated at the user’s request to a UJ-inspired orange, charcoal and white palette. Keep the prototype’s own navigation symbol and exact unofficial-service disclaimer.
 - Four destinations: APB Protection Services, APB Library, a selected computer laboratory and a selected classroom.
 - All current starts, route directions and endpoints are unverified samples. No real walking times, distances or room numbers are invented.
 - Wide sequential checkpoint photos planned with an iPhone 13 Pro Max. The current version is not true 360°.
@@ -30,7 +30,9 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 7. Created the public repository under the confirmed owner, Lungelo-gif, and enabled GitHub Pages from main at the root.
 8. Verified eight live sample journeys, search, navigation, arrival, feedback download and invalid-URL recovery.
 9. Checked six screens at five viewport widths using tests/responsive.html, fixed the keyboard skip link, and placed the exact disclaimer near the top of every screen.
-10. Versioned CSS and main JavaScript URLs as 0.1.1 so updated entry pages request matching assets.
+10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.2.0.
+11. Added four user-supplied reference images on 24 October 2026: campus buildings, library, public Protection Services sign and lecture room. The campus image is a building-only crop and the security image is a public-sign-only crop.
+12. Store references in assets/images/references/ and destination/campus image metadata in locations.json. Reference images appear on home cards, summaries and arrival screens. All walking checkpoint nodes and route instructions remain sample data; the computer lab keeps its existing placeholder.
 
 ## Pending verification and content
 
@@ -40,7 +42,7 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 - Exact computer laboratory building and room.
 - Exact classroom building and room.
 - Verified public library endpoint and Protection Services endpoint.
-- Real checkpoint photographs after the student’s planned Monday photography window.
+- Actual sequential route photographs will be supplied later. Existing reference photos do not verify campus locations, endpoints or directions.
 - Campus permissions, route walk-through, accessibility review and any verified hours/access notes.
 - Review global sample wording when real routes are validated; `isSample` alone intentionally does not remove all sample notices.
 

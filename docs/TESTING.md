@@ -14,6 +14,10 @@ Common rendered navigation text contrast ratios were measured: disclaimer 7.67:1
 
 The uploaded source was compared with the local files using Git blob hashes. The local managed preview service was unavailable, so browser checks used the real GitHub Pages deployment instead. Remaining manual work includes an actual phone/Safari check, VoiceOver, 200% zoom, reduced-motion behaviour, network throttling, deliberate missing-image/data failures and all real-campus verification.
 
+## Version 0.2 image and theme update
+
+The user requested four supplied images and a UJ-inspired orange, charcoal and white theme. All four web exports are JPEGs with no EXIF metadata and total about 196 KB. Campus people/entrance controls were excluded from the building crop, and Protection Services uses a public-sign-only crop. Portrait library and lecture-room photos use contain fitting. Route nodes and instructions remain unchanged, with the existing computer lab placeholder. The 18 route/data checks and JavaScript syntax checks passed after implementation. Live image/theme layout review follows deployment; earlier contrast measurements above describe the previous palette and must not be treated as measurements of version 0.2.
+
 ## Core journey — repeat for all four destinations
 
 - [x] From sample campus entrance, choose the destination and check the summary’s start/end and count.

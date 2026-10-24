@@ -2,7 +2,13 @@
 
 The interface and route data are separate. You do not need to redesign a page to change a checkpoint image.
 
-## Replace one placeholder
+## Current destination reference photographs
+
+User-supplied images are stored in assets/images/references/ and listed in docs/REFERENCE-IMAGES.md. locations.json contains campusImage for the home hero and an image object on each destination for its card, summary and arrival screen. These are separate from the checkpoint photos in routes.json. The computer lab image remains a placeholder.
+
+To change a destination reference, update that destination’s image.src, alt, label, width and height in locations.json. Keep its unverified label until the actual campus location is confirmed. Do not replace an entire walking sequence with one destination image. Future route photographs belong in assets/images/apb-routes/.
+
+## Replace one checkpoint placeholder
 
 1. Review the photo against `PHOTOGRAPHY-CHECKLIST.md`, including permissions and metadata.
 2. Export an ordinary landscape JPEG, preferably around 1,600–2,000 pixels wide and 100–250 KB. These are targets, not enforced limits. Keep useful signs readable on a phone.

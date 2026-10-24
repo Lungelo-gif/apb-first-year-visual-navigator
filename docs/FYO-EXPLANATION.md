@@ -4,7 +4,7 @@ APB First-Year Visual Navigator is a student proof of concept developed from an 
 
 A student chooses a starting point and destination, reviews a route summary, then moves through one checkpoint photo at a time with Previous and Next controls. The first demonstration includes APB Library, the public-facing Protection Services endpoint, a selected computer laboratory and a selected classroom. It is designed for a phone, with no login, live GPS or paid map service.
 
-UJ already provides a Wayfinder application and separate virtual campus tours. This project complements those existing tools by demonstrating one focused first-year visual navigation journey. The current images and directions are clearly labelled samples. Real routes must be confirmed, photographed with permission, reviewed for privacy and checked in person before a campus trial.
+UJ already provides a Wayfinder application and separate virtual campus tours. This project complements those existing tools by demonstrating one focused first-year visual navigation journey. Walking checkpoint images and directions remain clearly labelled samples. Supplied destination reference images are separately labelled as location-unverified. Real routes must be confirmed, photographed with permission, reviewed for privacy and checked in person before a campus trial.
 
 The planned photos are wide still images taken at checkpoints using an iPhone 13 Pro Max. This version is not a true 360° tour. Its purpose is to test whether simple visual checkpoints make a first-year student feel more confident about their next step.
 
