@@ -30,6 +30,12 @@ const banner = () => `<div class="demo-banner">${icon('info')}<p><strong>Demo ro
 const backHome = () => `<a class="breadcrumb" href="#home">${icon('back')} Back to destinations</a>`;
 
 document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.dataset.icon); });
+// Keep the skip link within the current page; the hash is reserved for app routes.
+document.querySelector('.skip-link').addEventListener('click', event => {
+  event.preventDefault();
+  main.focus({ preventScroll: true });
+  main.scrollIntoView({ block: 'start', behavior: 'instant' });
+});
 
 async function boot() {
   loadController?.abort();
