@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsive layout check | APB Visual Navigator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e9eee5; color: #203f36; font: 14px system-ui, sans-serif; }
+    header { padding: 18px 24px; background: #fff; border-bottom: 1px solid #bdc9b5; }
+    h1 { margin: 0 0 8px; font-size: 20px; }
+    p { margin: 7px 0; line-height: 1.6; }
+    .controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+    label { font-weight: 600; }
+    select, a { font: inherit; color: #203f36; padding: 10px; min-height: 44px; }
+    select { border: 1px solid #788d69; border-radius: 6px; background: #fff; }
+    :focus-visible { outline: 3px solid #527c1a; outline-offset: 3px; }
+    #preview-stage { padding: 22px; overflow: auto; }
+    .device { width: max-content; margin: 0 auto; border: 8px solid #234b40; border-radius: 19px; overflow: hidden; background: white; }
+    iframe { display: block; border: 0; width: 375px; height: 844px; }
+    .note { font-size: 12px; color: #536447; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>APB responsive layout check</h1>
+    <p>This test page embeds the actual application at a chosen viewport width. Use the app inside the frame to check every screen.</p>
+    <p class="note">It checks responsive layouts, not physical-device behaviour, GPS, campus accuracy or accessibility certification.</p>
+    <div class="controls"><label for="preview-width">Preview width</label><select id="preview-width"><option value="320">320 px — small phone</option><option value="375" selected>375 px — phone</option><option value="390">390 px — phone</option><option value="768">768 px — tablet</option><option value="1440">1440 px — desktop</option></select><span id="preview-status" role="status">375 × 844 CSS pixels</span><a href="../index.html">Open the application normally</a></div>
+  </header>
+  <main id="preview-stage"><div class="device"><iframe id="device-preview" src="../index.html" title="APB Visual Navigator responsive preview" width="375" height="844"></iframe></div></main>
+  <script>
+    const widthControl = document.querySelector('#preview-width');
+    const preview = document.querySelector('#device-preview');
+    widthControl.addEventListener('change', () => {
+      preview.style.width = `${Number(widthControl.value)}px`;
+      document.querySelector('#preview-status').textContent = `${widthControl.value} × 844 CSS pixels`;
+    });
+  </script>
+</body>
+</html>
