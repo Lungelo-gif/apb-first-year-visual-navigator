@@ -2,6 +2,8 @@
 
 **Student proof of concept — not an official University of Johannesburg service.**
 
+[Open the live prototype](https://lungelo-gif.github.io/apb-first-year-visual-navigator/) · [Source repository](https://github.com/Lungelo-gif/apb-first-year-visual-navigator)
+
 A mobile-first, static prototype for first-year students at Auckland Park Bunting Road Campus. It brings destination search, short written directions and sequential visual checkpoints into one experience. It complements UJ’s existing Wayfinder application and separate virtual campus tours.
 
 ## Current status
@@ -54,6 +56,7 @@ assets/images/placeholders/  Lightweight original SVG illustrations
 assets/images/apb-routes/    Add approved real photographs here
 docs/                       Content, photography, testing and deployment guides
 tests/routes.test.js         Route integrity and error-handling checks
+tests/responsive.html        Actual app in phone/tablet/desktop sized frames
 .nojekyll                    Serve the static files directly on GitHub Pages
 package.json                 Optional local development/check commands
 ```
