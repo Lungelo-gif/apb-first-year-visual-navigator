@@ -54,3 +54,18 @@ export function searchDestinations(destinations, query) {
 export function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
 }
+
+export function validateMap(layout, graph) {
+  const fail = message => { throw new Error(`Map data: ${message}`); };
+  if (layout?.schemaVersion !== 1 || !Number.isFinite(layout.width) || !Number.isFinite(layout.height) || layout.width <= 0 || layout.height <= 0 || !layout.nodes) fail('invalid layout dimensions or schema.');
+  for (const id of Object.keys(graph.nodes)) {
+    const p = layout.nodes[id];
+    if (!p || !Number.isFinite(p.x) || !Number.isFinite(p.y)) fail(`missing layout position for checkpoint ${id}.`);
+    if (p.x < 0 || p.x > layout.width || p.y < 0 || p.y > layout.height) fail(`checkpoint ${id} lies outside the sample layout.`);
+  }
+  if (!Array.isArray(layout.buildings) || !layout.labels) fail('buildings or labels are missing.');
+  for (const b of layout.buildings) {
+    if (![b.x,b.y,b.width,b.height].every(Number.isFinite) || b.width <= 0 || b.height <= 0 || b.x < 0 || b.y < 0 || b.x+b.width > layout.width || b.y+b.height > layout.height) fail('invalid sample building.');
+  }
+  return true;
+}
