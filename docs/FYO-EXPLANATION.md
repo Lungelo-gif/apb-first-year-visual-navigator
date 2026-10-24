@@ -2,19 +2,19 @@
 
 APB First-Year Visual Navigator is a student proof of concept developed from an idea connected to my FYO Marshal application. It explores how first-year students could find lecture rooms, computer laboratories and campus services through a simple destination search, short written directions and recognisable checkpoint photographs.
 
-A student chooses a starting point and destination, reviews a route summary, then moves through one checkpoint photo at a time with Previous and Next controls. The first demonstration includes APB Library, the public-facing Protection Services endpoint, a selected computer laboratory and a selected classroom. It is designed for a phone, with no login, live GPS or paid map service.
+A student starts with a simple map, chooses a starting point and destination, then reviews a highlighted sample route. “Start photo walk” opens a large checkpoint image with Forward and Back arrows directly over the view, plus written directions and Previous/Next controls. The first demonstration includes APB Library, the public-facing Protection Services endpoint, a selected computer laboratory and a selected classroom. It is designed for a phone, with no login, live GPS or paid map service.
 
 UJ already provides a Wayfinder application and separate virtual campus tours. This project complements those existing tools by demonstrating one focused first-year visual navigation journey. Walking checkpoint images and directions remain clearly labelled samples. Supplied destination reference images are separately labelled as location-unverified. Real routes must be confirmed, photographed with permission, reviewed for privacy and checked in person before a campus trial.
 
-The planned photos are wide still images taken at checkpoints using an iPhone 13 Pro Max. This version is not a true 360° tour. Its purpose is to test whether simple visual checkpoints make a first-year student feel more confident about their next step.
+The planned photos are wide still images taken at checkpoints using an iPhone 13 Pro Max. This version is not a true 360° tour. Its purpose is to demonstrate the map-to-visual-walk experience and support a request for a 360° camera. The next phase would capture authorised panoramas, letting students look around each checkpoint and use connected arrows to move forward or backward. The current prototype is a still-photo demonstration, not an actual 360° tour.
 
 **Student proof of concept — not an official University of Johannesburg service.**
 
 ## A short demonstration
 
 1. Open the app and point out the student disclaimer and sample-route notice.
-2. Choose the sample starting point, search for “library” and open the route summary.
-3. Show the checkpoint count, written instruction, photo, large arrows and progress.
+2. Choose the sample starting point, search for “library” or tap its map pin, then show the highlighted sample route.
+3. Select “Start photo walk”. Show the large view, on-image Forward/Back arrows, written instruction and checkpoint progress.
 4. Go back one checkpoint, then finish the sample sequence.
 5. Explain that arrival confirms the end of the sequence, not GPS detection.
 6. Show Help/About and the locally downloaded feedback form.

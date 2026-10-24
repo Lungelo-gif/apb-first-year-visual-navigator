@@ -51,12 +51,18 @@ You can use `library-01-start.jpg` if a library-only start is needed. The demo u
 
 These suggested file slots describe the sample graph only. Your campus walk may need a different number of checkpoints; add or remove nodes to match reality.
 
+## Updating the sample layout
+
+`data/map.json` stores relative drawing positions (`x`, `y`) for each checkpoint and rectangles for decorative sample buildings. These are diagram coordinates, not geographic measurements. Keep the visible “not an APB survey / not to scale” notice. Whenever a route gains a new checkpoint, add its layout position too; validation rejects missing or out-of-bounds positions. Shared nodes have one shared map position, just as they have one shared photo.
+
+Do not claim the diagram is a real APB map until an appropriate surveyed/authorised layout is provided. The SVG renderer is in `js/map-view.js`, and `css/navigator.css` controls the map and immersive photo walk. Genuine 360° rendering can be added later without replacing the connected route graph.
+
 ## Add a checkpoint to an existing route
 
 1. Choose a unique ID, for example `library-covered-path`.
 2. Add a node inside `nodes` with `title`, `instruction`, `landmark`, `image`, `suggestedPhoto` and `next`.
 3. Point the preceding node’s `next` array to the new ID, and point the new node to the following checkpoint.
-4. Include the new ID in that route’s `allowedNodeIds`. When a shared path changes, update every affected route’s allowed nodes.
+4. Include the new ID in that route’s `allowedNodeIds` and give it an X/Y sample-layout position in `data/map.json`. When a shared path changes, update every affected route’s allowed nodes.
 5. Keep branches directed and intentional. Avoid alternate shortcuts: the traversal chooses the path with the fewest node connections, not the shortest real walk or an accessible walk.
 6. Run `npm test`. Traverse each affected route in the browser.
 

@@ -18,7 +18,7 @@ No custom domain, credit card, Google Maps key or GitHub Actions workflow file i
 
 Update source or approved photos in the same repository and commit to the publishing branch. GitHub Pages republishes that source. Check the Pages deployment result, then test the changed routes on the live site. Keep the repository and local working copy aligned; avoid making conflicting edits in two places.
 
-When changing CSS or the main JavaScript, update the matching `?v=` release value in `index.html` (currently `0.2.0`) and the package version. Also keep the release value and versioned core-module import in `js/app.js` aligned so JSON and validation code refresh together. This makes returning browsers request the matching updated interface files. Use a new descriptive filename for a replaced photo, then update `image.src`.
+When changing CSS or the main JavaScript, update the matching `?v=` release value in `index.html` (currently `0.3.0`) and the package version. Also keep the release value and versioned core-module import in `js/app.js` aligned so JSON and validation code refresh together. This makes returning browsers request the matching updated interface files. Use a new descriptive filename for a replaced photo, then update `image.src`.
 
 ## Troubleshooting
 

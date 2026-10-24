@@ -30,10 +30,16 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 7. Created the public repository under the confirmed owner, Lungelo-gif, and enabled GitHub Pages from main at the root.
 8. Verified eight live sample journeys, search, navigation, arrival, feedback download and invalid-URL recovery.
 9. Checked six screens at five viewport widths using tests/responsive.html, fixed the keyboard skip link, and placed the exact disclaimer near the top of every screen.
-10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.2.0.
+10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.3.0.
 11. Added four user-supplied reference images on 24 October 2026: campus buildings, library, public Protection Services sign and lecture room. The campus image is a building-only crop and the security image is a public-sign-only crop.
 12. Store references in assets/images/references/ and destination/campus image metadata in locations.json. Reference images appear on home cards, summaries and arrival screens. All walking checkpoint nodes and route instructions remain sample data; the computer lab keeps its existing placeholder.
 13. Verified the deployed version 0.2: all four destination photo journeys work, the six main screens fit five tested viewport widths, and the common notice/button/footer contrast ratios remain readable. All 33 release files matched the working source.
+
+## Clarified interface vision — version 0.3
+
+The user originally pictured a Google Maps-like navigation experience with a Street View-like visual walk. The prototype should help demonstrate the idea to obtain a 360° camera. Implement the common interaction pattern with this project’s own UJ-inspired identity: map first, choose a destination, preview the route, then move through an immersive viewer using on-image Forward/Back arrows.
+
+The map is a draggable, zoomable schematic sample stored in data/map.json, not an APB survey. All pins, routes and map positions remain unverified. The viewer uses ordinary still images and clearly states that it is a still-photo demo. It does not simulate panoramic look-around or claim actual 360° capture. Keep the supplied reference photos, graph reuse, keyboard controls, exact disclaimer, free static architecture and existing GitHub Pages site. No Google API, Google imagery, live GPS or new backend was added.
 
 ## Pending verification and content
 

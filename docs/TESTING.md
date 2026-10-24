@@ -18,6 +18,12 @@ The uploaded source was compared with the local files using Git blob hashes. The
 
 The user requested four supplied images and a UJ-inspired orange, charcoal and white theme. All four web exports are JPEGs with no EXIF metadata and total about 196 KB. Campus people/entrance controls were excluded from the building crop, and Protection Services uses a public-sign-only crop. Portrait library and lecture-room photos use contain fitting. Route nodes and instructions remain unchanged, with the existing computer lab placeholder. The 18 route/data checks and JavaScript syntax checks passed after implementation. Live version 0.2 checks passed for all four destinations: each card, summary and arrival showed the intended reference image, the lab kept its original placeholder, and sample walking checkpoints remained separate. Home cards, portrait summary, checkpoint navigation, photo arrival, Help and feedback passed no-horizontal-overflow checks at 320, 375, 390, 768 and 1,440 CSS pixels. The new palette measured 7.74:1 for the disclaimer, 8.12:1 for the demo notice, 5.89:1 for the primary button and 5.79:1 for footer text. All 33 repository files matched the local source after the release upload. These checks do not replace the pending real iPhone/Safari, VoiceOver and campus-route reviews.
 
+## Version 0.3 map and immersive-walk update
+
+Implemented a draggable/zoomable schematic map, searchable destination list, keyboard-accessible SVG pins, highlighted route overview and a still-image viewer with Forward/Back arrows directly over the image. Added data/map.json, js/map-view.js and css/navigator.css. Route graph and supplied reference photographs remain separate and unchanged. `npm test`: 21 checks passed, including map-position validation. JavaScript syntax checks passed. Live browser checks for this release are pending publication; earlier results describe the preceding interface.
+
+Manual release checks: map search and pin selection, both origins, zoom/reset, map drag, each destination’s route overview, Forward/Back and Previous/Next controls, keyboard arrows/Escape, arrival/return, small-screen overlap and visibility, image/error states, Help and feedback. Check that the sample map notice, still-photo-demo label and exact student disclaimer stay visible.
+
 ## Core journey — repeat for all four destinations
 
 - [x] From sample campus entrance, choose the destination and check the summary’s start/end and count.
