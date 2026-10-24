@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, stat } from 'node:fs/promises';
-import { validateData, findPath, searchDestinations, escapeHTML } from '../js/core.js';
+import { validateData, validateMap, findPath, searchDestinations, escapeHTML } from '../js/core.js';
 
 const locations = JSON.parse(await readFile(new URL('../data/locations.json', import.meta.url)));
 const graph = JSON.parse(await readFile(new URL('../data/routes.json', import.meta.url)));
+const layout = JSON.parse(await readFile(new URL('../data/map.json', import.meta.url)));
 
 test('published sample data validates and has exactly the four agreed destinations', () => {
   assert.equal(validateData(locations,graph),true);
@@ -67,4 +68,21 @@ test('Protection Services endpoint is public-facing and terminal', () => {
   const route=graph.routes.find(r => r.destinationId==='security');
   assert.deepEqual(graph.nodes[route.arrivalNodeId].next,[]);
   assert.match(graph.nodes[route.arrivalNodeId].instruction,/public entrance or official sign/);
+});
+
+// The sample map must be able to display every actual route node, including shared paths.
+test('sample map has valid relative drawing positions for every checkpoint', () => {
+  assert.equal(validateMap(layout,graph),true);
+  for (const start of locations.starts) for (const route of graph.routes) {
+    const path=findPath(graph,start.nodeId,route);
+    assert.ok(path.every(id=>Number.isFinite(layout.nodes[id].x)&&Number.isFinite(layout.nodes[id].y)));
+  }
+});
+test('missing map positions produce an actionable error', () => {
+  const broken=structuredClone(layout);delete broken.nodes['shared-junction'];
+  assert.throws(()=>validateMap(broken,graph),/missing layout position for checkpoint shared-junction/);
+});
+test('out-of-bounds map nodes are rejected rather than drawing an offscreen route', () => {
+  const broken=structuredClone(layout);broken.nodes['library-arrival'].x=2000;
+  assert.throws(()=>validateMap(broken,graph),/outside the sample layout/);
 });
