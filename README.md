@@ -26,7 +26,7 @@ npm test
 npm run check
 ```
 
-There are no npm dependencies to install.
+There are no npm dependencies to install. For a repeatable phone-width preview, open `tests/responsive.html` through the same server. It embeds the actual app at 320, 375, 390, 768 or 1,440 CSS pixels; an actual phone check is still needed.
 
 ## What works
 
