@@ -173,7 +173,7 @@ summary { cursor: pointer; min-height: 28px; padding: 4px 0; line-height: 1.6; }
   .viewer-destination { max-width: 55%; }
 }
 @media (max-width: 760px) {
-  .campus-map-reference { padding: 90px 7px 0; }
+  .campus-map-reference { padding: 90px 7px 8px; }
   .map-view-switch { top: 10px; left: 11px; right: 69px; width: max-content; max-width: calc(100% - 80px); }
   .map-view-switch button { font-size: 11px; padding: 8px 11px; min-height: 36px; }
   .map-view-switch ~ .map-layout-notice { top: 63px; font-size: 9px; }
@@ -190,7 +190,7 @@ summary { cursor: pointer; min-height: 28px; padding: 4px 0; line-height: 1.6; }
   .prototype-disclaimer { padding: 7px 13px; font-size: 9px; line-height: 1.5; }
   main { padding: 21px 16px; }
   body[data-screen="home"] .workspace, body[data-screen="route"] .workspace, body[data-screen="navigate"] .workspace { height: calc(100dvh - 64px); }
-  .map-canvas { inset: 0 0 44% 0; }
+  .map-canvas { inset: 0 0 calc(var(--planner-height, 58%) + 20px) 0; }
   .map-planner { top: auto; bottom: 10px; left: 10px; right: 10px; width: auto; padding: 13px; max-height: 58%; border-radius: 17px; }
   .planner-header .planner-kicker, .planner-header p { display: none; }
   .planner-header h1 { font-size: 22px; margin: 0 0 11px; letter-spacing: -.6px; }
