@@ -3,6 +3,14 @@
   "width": 1000,
   "height": 700,
   "notice": "Sample layout · not an APB survey · not to scale",
+  "referenceImage": {
+    "src": "assets/images/references/apb-campus-map-original.jpg",
+    "alt": "User-supplied aerial Bunting Road Campus map showing buildings, the Library, Annet Road and Kingsway Avenue. Includes its original University of Johannesburg and Google Earth attribution. Small labels may be difficult to read.",
+    "width": 659,
+    "height": 466,
+    "notice": "Campus reference · date and routes unverified",
+    "sourceNote": "Map supplied by the project creator. Original image and attribution preserved. It is a reference, not a current route survey. No sample pins or paths are overlaid on real buildings."
+  },
   "nodes": {
     "shared-start": { "x": 140, "y": 590 },
     "shared-walkway": { "x": 340, "y": 590 },
