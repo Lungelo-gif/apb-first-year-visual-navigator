@@ -1,4 +1,4 @@
-# Supplied reference images — version 0.2
+# Supplied reference images
 
 These files were supplied by the project creator on 24 October 2026 for the prototype. They are temporary campus/destination references, not verified APB route checkpoints. The lab photo and actual sequential route photographs will be supplied later.
 
@@ -25,3 +25,11 @@ The source campus image shows entrance labels that do not establish an APB locat
 Use `assets/images/apb-routes/` and update the corresponding node images in `data/routes.json`. Follow `ROUTES-AND-PHOTOS.md` and `PHOTOGRAPHY-CHECKLIST.md`. A reference destination image must not be treated as proof that the sample turns, starting point or arrival node are correct. The computer-lab placeholder and all sample checkpoint images remain available until those real photographs arrive.
 
 The new UI uses a UJ-inspired orange, charcoal and white palette with darker orange for readable white button text. It retains the project's own navigation symbol and does not claim official UJ brand approval.
+
+## Campus map — version 0.4, 25 October 2026
+
+The creator supplied map.jfif, a 659 × 466 aerial Bunting Road Campus map. assets/images/references/apb-campus-map-original.jpg is an exact copy, preserving original labels, legend, university attribution and Google Earth attribution. It is the default Campus map view and can be panned, zoomed and opened in its original form. The campus image is not a verified current survey. Its publication date and reuse permissions have not been established.
+
+An AI restoration was requested with instructions to preserve all geometry and text. Inspection found changed building names and block letters, so the generated version was rejected and is not included in the website or repository. The app uses the unchanged source rather than inventing readable detail. A higher-resolution source should replace it later, using a new asset filename and updated referenceImage dimensions/alternative text in data/map.json.
+
+Demo nodes stay in the separate Demo routes view. Do not copy their X/Y positions onto the aerial image; exact starts, destinations and walking paths still need campus verification.

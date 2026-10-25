@@ -83,3 +83,7 @@ Replacing images does **not** make a route verified. Keep `isSample: true` and `
 The current interface deliberately includes global sample-route notices and sample-only arrival language. The route `isSample` flag controls some per-checkpoint labels, but changing the flag alone does not remove every sample notice. When real routes are ready, review that global content with the coding partner, update the statuses in `app.js` consistently, and update the sample-specific tests. Keep the student proof-of-concept disclaimer even after route verification.
 
 Never mark an unverified route as ready merely to remove a notice. Record the review date, reviewer role and any limitations without adding unnecessary personal information to a public repository.
+
+## Campus reference versus demo route coordinates
+
+The default Campus map uses data/map.json → referenceImage, including src, alt, width, height, notice and sourceNote. Replace it with a permitted higher-resolution original under a new filename, preserving attribution and updating those fields. This image is independent of the graph. The existing nodes/buildings/labels fields draw the Demo routes schematic only. Do not align those invented positions to real campus buildings. A surveyed map overlay needs separately verified endpoint and path positions before implementation.

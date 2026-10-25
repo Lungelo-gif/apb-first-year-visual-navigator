@@ -95,3 +95,9 @@ Expected sample counts:
 - [ ] All four real routes are walked and authorised before claiming route accuracy.
 - [x] Keep the exact student disclaimer visible, including on route and arrival screens.
 - [ ] Update this document with the date, browser/device and outcome of each completed manual test. Do not mark a check complete based only on a unit test.
+
+## Version 0.4 campus reference map
+
+23 route/data checks and JavaScript syntax checks passed. Added local-image path validation and a small-asset check. The campus map asset is byte-identical to the uploaded source. AI output was inspected and rejected because labels/block letters changed. The local managed preview daemon remains unavailable; live browser checks follow publication.
+
+Release checks: original image loads with all attribution visible; Campus map is the default; zoom/pan/reset work; switching Demo routes shows the separate SVG and pins; switching back retains no fabricated overlay; destination search, both starts, summary and photo arrows still work; source disclosure and original-image link are accessible; compare phone/desktop layouts. Physical-device and real-campus checks remain pending.

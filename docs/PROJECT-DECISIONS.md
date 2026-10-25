@@ -30,7 +30,7 @@ Last updated: 24 October 2026. This file is the project’s durable decision log
 7. Created the public repository under the confirmed owner, Lungelo-gif, and enabled GitHub Pages from main at the root.
 8. Verified eight live sample journeys, search, navigation, arrival, feedback download and invalid-URL recovery.
 9. Checked six screens at five viewport widths using tests/responsive.html, fixed the keyboard skip link, and placed the exact disclaimer near the top of every screen.
-10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.3.0.
+10. Versioned interface/data URLs so updated entry pages request matching assets. Current release: 0.4.0.
 11. Added four user-supplied reference images on 24 October 2026: campus buildings, library, public Protection Services sign and lecture room. The campus image is a building-only crop and the security image is a public-sign-only crop.
 12. Store references in assets/images/references/ and destination/campus image metadata in locations.json. Reference images appear on home cards, summaries and arrival screens. All walking checkpoint nodes and route instructions remain sample data; the computer lab keeps its existing placeholder.
 13. Verified the deployed version 0.2: all four destination photo journeys work, the six main screens fit five tested viewport widths, and the common notice/button/footer contrast ratios remain readable. All 33 release files matched the working source.
@@ -67,3 +67,9 @@ Version 0.3 was published to the existing GitHub Pages site on 24 October 2026. 
 ## Next working session
 
 Test the live site on an actual iPhone/Safari and with VoiceOver. Complete the remaining manual error/loading checks. Gather the exact APB start, laboratory, classroom and approved photos, then update data/assets and walk every route before removing sample labels. Use the existing repository and Pages site; do not create another repository for normal updates.
+
+## Campus map update — version 0.4, 25 October 2026
+
+Use the creator’s supplied aerial map as the default Campus map view with pan, zoom and access to the unchanged original. Preserve all original attribution inside the source image; keep the interface’s own navigation symbol and unofficial-service disclaimer. Keep the existing schematic under Demo routes. Do not overlay invented checkpoints or paths on actual buildings. Selecting destinations and starting the still-photo walk works from both views.
+
+The AI restoration changed source text and was rejected. The app and repository contain the original source image only. Its small resolution limits readable detail; request a higher-resolution original when available. Actual map currency, route verification and image permissions remain open. No Google API, live map tiles, new backend or paid service was introduced.
