@@ -8,9 +8,9 @@ A mobile-first, static prototype for first-year students at Auckland Park Buntin
 
 ## Current status
 
-Version 0.3 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. User-supplied campus, library, public Protection Services sign and lecture-room images are temporary references with unverified locations. The computer lab and all walking checkpoint images remain illustrative placeholders. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
+Version 0.4 demonstrates four destinations: APB Library, APB Protection Services, a computer laboratory and a classroom. **Every route and starting point is an unverified sample. User-supplied campus, library, public Protection Services sign and lecture-room images are temporary references with unverified locations. The computer lab and all walking checkpoint images remain illustrative placeholders. Do not follow these sample directions on campus.** The exact start, laboratory and classroom remain to be confirmed.
 
-The main screen is a draggable, zoomable sample layout with destination pins and search. A selected route appears on that layout; “Start photo walk” opens a large still-image viewer with Forward/Back arrows over the image, Previous/Next controls and written directions. The layout is illustrative, not an APB survey or geographic map. It is not a true 360° system and does not detect your physical location. An arrival screen confirms the end of the sequence only.
+The main screen opens the supplied aerial Bunting Road Campus map as a draggable, zoomable reference. Its original labels and attribution are preserved. A separate “Demo routes” view contains the illustrative pins and highlighted sample paths; invented routes are never placed over real buildings. Destination search and “Start photo walk” work from either view. The large still-image viewer has Forward/Back arrows over the image, Previous/Next controls and written directions. Neither view is a verified current route survey. It is not a true 360° system and does not detect your physical location. An arrival screen confirms the end of the sequence only.
 
 ## Try it locally
 
@@ -32,8 +32,8 @@ There are no npm dependencies to install. For a repeatable phone-width preview, 
 
 ## What works
 
-- Search by destination name, category or keyword, or select a map pin; choose either sample starting location.
-- Drag and zoom the illustrative layout, then review the highlighted sample route.
+- Search by destination name, category or keyword, or select a pin in Demo routes; choose either sample starting location.
+- Drag and zoom the supplied campus reference, or switch to Demo routes to review the illustrative highlighted path.
 - Review a route summary, checkpoint list and unverified access information.
 - Follow large checkpoint images, written directions, overlay arrows and labelled Previous/Next buttons.
 - Track progress, return to previous checkpoints, exit and reach an arrival screen.
@@ -49,12 +49,12 @@ The app has no live GPS, analytics, third-party fonts, remote image requests, pa
 index.html
 css/styles.css               Shared theme, content and forms
 css/navigator.css            Map and immersive-viewer layouts
-js/map-view.js               Accessible SVG sample map
+js/map-view.js               Campus reference and accessible SVG demo map
 js/app.js                    Interface, loading, URL state and controls
 js/core.js                   Data validation, search and graph traversal
 data/locations.json          Starting points and destination information
 data/routes.json             Shared nodes, connections and allowed route nodes
-data/map.json                Relative drawing positions for the sample layout
+data/map.json                Campus reference metadata and separate demo positions
 assets/favicon.svg           Original neutral navigation symbol
 assets/images/placeholders/  Lightweight original SVG checkpoint illustrations
 assets/images/references/    Supplied reference photos, separate from route photos
@@ -86,7 +86,7 @@ The sample layout is drawn from relative X/Y positions in `data/map.json`; they 
 
 ## The 360° camera vision
 
-The user’s vision is a familiar map-to-immersive-walk experience: choose a place on a simple map, enter the visual viewer and move forward or backward with arrows. This prototype demonstrates that interaction for a presentation or request for a 360° camera. It currently uses still images, so it cannot look around a panorama. A future authorised version can keep the connected checkpoint graph and replace still-image rendering with genuine captured panoramas and approved hotspots. No Google map tiles, Google application assets, live GPS or paid map API are used.
+The user’s vision is a familiar map-to-immersive-walk experience: choose a place on a simple map, enter the visual viewer and move forward or backward with arrows. This prototype demonstrates that interaction for a presentation or request for a 360° camera. It currently uses still images, so it cannot look around a panorama. A future authorised version can keep the connected checkpoint graph and replace still-image rendering with genuine captured panoramas and approved hotspots. No live Google map tiles, Google application design, GPS or paid map API are used. The user-supplied campus image retains its original Google Earth and university attribution.
 
 ## Before a real campus trial
 
@@ -95,3 +95,7 @@ Confirm the start, destination signs, public access and every walking instructio
 Protection Services must end at the **public entrance or official sign**. It must never show the inside of the office. Keep the student disclaimer visible. The interface uses a UJ-inspired orange, charcoal and white palette with its own navigation symbol. No standalone UJ logo or official application design was added. Supplied photos may show public signs; their source permissions and APB locations remain to be confirmed.
 
 Do not add real contacts, opening hours, distances, room numbers or walking times until verified. Physical routes, accessibility, image permission and official endorsement have not been verified by this prototype.
+
+## Campus map image — version 0.4
+
+The creator supplied map.jfif (659 × 466 pixels) on 25 October 2026. The exact source bytes are stored as assets/images/references/apb-campus-map-original.jpg. An AI restoration was attempted but changed building names and block markers, so that output is excluded from the app and repository. Zoom cannot recover detail absent from the source; a higher-resolution original is the next image improvement. The image’s source date, reuse permissions and current campus accuracy remain unverified.
