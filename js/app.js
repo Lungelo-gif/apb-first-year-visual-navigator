@@ -1,5 +1,5 @@
-import { validateData, validateMap, findPath, searchDestinations, escapeHTML as e } from './core.js?v=0.3.0';
-import { mapMarkup } from './map-view.js?v=0.3.0';
+import { validateData, validateMap, findPath, searchDestinations, escapeHTML as e } from './core.js?v=0.4.0';
+import { mapMarkup, referenceMapMarkup } from './map-view.js?v=0.4.0';
 
 const icons = {
   compass:'<circle cx="12" cy="12" r="9"/><path d="m16 8-2.6 5.4L8 16l2.6-5.4L16 8Z"/>',
@@ -26,9 +26,9 @@ const icons = {
 };
 const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.pin}</svg>`;
 const main = document.querySelector('main');
-const release = '0.3.0';
+const release = '0.4.0';
 const announcer = document.querySelector('#announcer');
-let locations, graph, layout, startId = 'sample-entrance', query = '', mapZoom = 1, mapPanX = 0, mapPanY = 0, mapDrag, imageTimer, loadController, dockObserver;
+let locations, graph, layout, startId = 'sample-entrance', query = '', mapMode = 'campus', mapZoom = 1, mapPanX = 0, mapPanY = 0, mapDrag, imageTimer, loadController, dockObserver;
 const announce = message => { announcer.textContent = message; };
 const href = (screen, destination, step) => `#${screen}/${encodeURIComponent(destination)}?from=${encodeURIComponent(startId)}${step !== undefined ? `&step=${step}` : ''}`;
 const banner = () => `<div class="demo-banner">${icon('info')}<p><strong>Demo routes · not verified for walking.</strong> Checkpoint illustrations and directions are samples. Confirm the real APB route before using it on campus.</p></div>`;
@@ -66,17 +66,23 @@ async function boot() {
 
 function mapCanvas(context) {
   const options = { startId, destinationId:context?.destination.id, path:context?.path || [] };
-  return `<div class="map-canvas"><div class="map-viewport" id="map-viewport" style="transform:translate(${mapPanX}px,${mapPanY}px) scale(${mapZoom})">${mapMarkup(layout,locations,graph,options)}</div></div><div class="map-layout-notice">${icon('info')}<span>${e(layout.notice)}</span></div><div class="map-tools" aria-label="Sample map zoom"><button data-action="zoom-in" aria-label="Zoom in on sample map">+</button><button data-action="zoom-out" aria-label="Zoom out on sample map">−</button><button data-action="zoom-reset" aria-label="Reset sample map zoom">${icon('compass')}</button></div><div class="map-key"><span class="key-dot"></span> ${context ? 'Sample route' : 'Tap a destination pin'} <span>· No live GPS</span></div>`;
+  const campus = mapMode === 'campus' && layout.referenceImage;
+  return `<div class="map-canvas ${campus ? 'has-campus-reference' : ''}"><div class="map-viewport" id="map-viewport" style="transform:translate(${mapPanX}px,${mapPanY}px) scale(${mapZoom})">${campus ? referenceMapMarkup(layout.referenceImage) : mapMarkup(layout,locations,graph,options)}</div></div><div class="map-view-switch" role="group" aria-label="Map view"><button data-action="map-mode" data-map-mode="campus" aria-pressed="${!!campus}">Campus map</button><button data-action="map-mode" data-map-mode="demo" aria-pressed="${!campus}">Demo routes</button></div><div class="map-layout-notice">${icon('info')}<span>${e(campus ? layout.referenceImage.notice : layout.notice)}</span></div><div class="map-tools" aria-label="Map zoom"><button data-action="zoom-in" aria-label="Zoom in on map">+</button><button data-action="zoom-out" aria-label="Zoom out on map">−</button><button data-action="zoom-reset" aria-label="Reset map view">${icon('compass')}</button></div><div class="map-key"><span class="key-dot"></span> ${campus ? 'Reference image · drag to explore' : context ? 'Sample route' : 'Tap a destination pin'} <span>· No live GPS</span></div>`;
+}
+
+function mapSourceDetails() {
+  const image = layout.referenceImage;
+  return image ? `<details class="campus-map-details"><summary>About this campus map</summary><p>${e(image.sourceNote)}</p><p>The supplied image is small. Zoom enlarges it; tiny labels may still be unclear.</p><a href="${e(image.src)}" target="_blank" rel="noopener">Open original map in a new tab ↗</a></details>` : '';
 }
 
 function home() {
   const start = locations.starts.find(s => s.id === startId);
-  main.innerHTML = `<section class="map-experience" aria-label="Choose a destination on the sample map">${mapCanvas()}<div class="map-planner">
-    <header class="planner-header"><div class="planner-kicker">APB VISUAL NAVIGATOR</div><h1>Where to?</h1><p>Choose a place. Then follow the photo arrows.</p></header>
+  main.innerHTML = `<section class="map-experience" aria-label="Campus map and sample destinations">${mapCanvas()}<div class="map-planner">
+    <header class="planner-header"><div class="planner-kicker">APB VISUAL NAVIGATOR</div><h1>Where to?</h1><p>Explore the campus map. Choose a place to try the photo walk.</p></header>
     <div class="origin-field"><div class="origin-symbol">${icon('pin')}</div><div><label for="start-location">Starting from</label><select id="start-location" aria-describedby="origin-note">${locations.starts.map(s => `<option value="${e(s.id)}" ${s.id === startId ? 'selected' : ''}>${e(s.name)}</option>`).join('')}</select></div></div><p class="origin-note" id="origin-note">${e(start.note)}</p>
     <div class="search-field">${icon('search')}<label class="sr-only" for="destination-search">Search destinations</label><input id="destination-search" type="search" placeholder="Search library, security, a classroom…" value="${e(query)}" autocomplete="off" maxlength="100"><button class="clear-search" aria-label="Clear destination search" data-action="clear-search" ${query ? '' : 'hidden'}>×</button></div>
     <div class="planner-list-heading"><h2>Destinations</h2><span>4 sample routes</span></div><div class="map-destination-list" id="destination-results"></div><p class="sr-only" id="search-status" role="status" aria-live="polite" aria-atomic="true"></p>
-    <p class="planner-note">Reference photos · locations unverified. The map is an illustrative layout.</p><details class="campus-photo-details"><summary>View campus reference photo</summary>${referenceMedia(locations.campusImage,'map-campus-reference')}</details>
+    <p class="planner-note">Photo walks are unverified samples. Use “Demo routes” to see their illustrative pins and paths.</p>${mapSourceDetails()}<details class="campus-photo-details"><summary>View campus reference photo</summary>${referenceMedia(locations.campusImage,'map-campus-reference')}</details>
   </div></section>`;
   renderDestinations();
 }
@@ -96,7 +102,7 @@ function routeSummary(context) {
     <a class="planner-back" href="#home">${icon('back')} Back to destinations</a><div class="route-place-header">${referenceMedia(d.image,'route-place-photo')}<div><span class="planner-kicker">YOUR DESTINATION</span><h1>${e(d.name)}</h1></div></div><p class="reference-caption">${e(d.image.label)}</p>
     <div class="route-start"><span class="origin-symbol">${icon('pin')}</span><div><span class="field-label">Starting from</span><strong>${e(start.name)}</strong></div></div>
     <p class="route-description">${e(route.summary)}</p><div class="route-facts"><div><strong>${path.length} stops</strong><span>Photo checkpoints</span></div><div><strong>Your pace</strong><span>Manual arrows</span></div><div><strong>Demo</strong><span>Unverified route</span></div></div>
-    <a class="primary-btn full-width" href="${href('navigate',d.id,1)}">${icon('eye')} Start photo walk ${icon('arrow')}</a><p class="map-route-warning">${icon('info')} Sample layout and directions. Use this to try the interface, not for walking on campus.</p>
+    <a class="primary-btn full-width" href="${href('navigate',d.id,1)}">${icon('eye')} Start photo walk ${icon('arrow')}</a><p class="map-route-warning">${icon('info')} Sample directions are not aligned to the campus image. “Demo routes” shows the illustrative path. Do not follow it on campus.</p>${mapSourceDetails()}
     <details class="route-checkpoints"><summary>See the ${path.length} checkpoints</summary><ol class="route-outline">${path.map(id => `<li>${e(graph.nodes[id].title)}<small>${e(graph.nodes[id].instruction)}</small></li>`).join('')}</ol></details><p class="route-access-note">${e(d.accessibility)} Distance and walking time are not verified.</p>
   </div></section>`;
 }
@@ -149,7 +155,7 @@ function arrival(context) {
 }
 
 function help() {
-  main.innerHTML = `<div class="content-page">${backHome()}<div class="eyebrow">A little help along the way</div><h1>Your campus companion,<br>explained.</h1><p class="lead">APB First-Year Visual Navigator combines destination search, written instructions and visual checkpoints in a simple student experiment.</p><section class="panel content-section"><h2>About this prototype</h2><p><strong>Student proof of concept — not an official University of Johannesburg service.</strong></p><p>This project grew from a student idea connected to an FYO Marshal application. It demonstrates a first-year navigation experience that complements UJ’s existing Wayfinder application and separate virtual campus tours.</p><p>The campus, library, Protection Services sign and lecture-room photos are user-supplied reference images. Their APB locations are unverified. The computer lab image and every walking checkpoint remain illustrative placeholders. Every route, both starting points, and the selected lab and classroom are unverified. Do not use the demo directions for walking on campus.</p></section><section class="panel content-section"><h2>How to try it</h2><ol><li>Choose a sample starting point, then tap a destination pin on the map or choose it from the list.</li><li>Review the sample route on the map and select “Start photo walk”.</li><li>Use the large Forward and Back arrows on the photograph, or the Previous and Next buttons. Read the short direction at each checkpoint.</li><li>Finish the sample route, then choose another destination or share feedback.</li></ol><p>You can use a keyboard: <kbd>Tab</kbd> moves between controls, <kbd>Enter</kbd> activates links and buttons, arrow keys change checkpoints, and <kbd>Esc</kbd> exits navigation.</p></section><section class="panel content-section"><h2>Photos, not 360° views</h2><p>The planned real version uses wide checkpoint photographs taken with an iPhone 13 Pro Max. You move through a sequence with the on-screen arrows. The interface demonstrates a map-to-photo-walk experience for a future authorised 360° campus tour. The current viewer uses still images; it cannot look around a panorama. The map is a schematic sample, not an APB survey, and there is no live GPS. A 360° camera would provide the real panoramas for the next phase.</p></section><section class="panel content-section"><h2>Privacy and data</h2><p>No account, database, analytics, payments or location permission is used. Your choices stay in this browser tab and its URL. The static hosting provider handles normal web requests. Feedback is downloaded to your device; the app sends no feedback online.</p><p>Only the current checkpoint image loads during navigation. Destination reference photos load when their cards or summary are viewed, using compressed local files. The building-only campus crop excludes people and entrance controls; the Protection Services reference shows the public sign only. The app needs a connection to load its files and does not promise offline access.</p></section><section class="panel content-section"><h2>If something doesn’t look right</h2><p>A missing image leaves the written direction available and offers a retry. If a future photo does not match your surroundings, pause and ask campus staff for help. Access, opening hours, distances and step-free routes still need to be checked.</p><p>The Protection Services route must end at the public entrance or official sign. Never photograph security equipment, access controls or restricted areas. Don’t include recognisable faces without permission, student cards, personal information, screens with information or vehicle registrations.</p><a class="secondary-btn" href="#feedback">${icon('message')} Share prototype feedback</a></section></div>`;
+  main.innerHTML = `<div class="content-page">${backHome()}<div class="eyebrow">A little help along the way</div><h1>Your campus companion,<br>explained.</h1><p class="lead">APB First-Year Visual Navigator combines destination search, written instructions and visual checkpoints in a simple student experiment.</p><section class="panel content-section"><h2>About this prototype</h2><p><strong>Student proof of concept — not an official University of Johannesburg service.</strong></p><p>This project grew from a student idea connected to an FYO Marshal application. It demonstrates a first-year navigation experience that complements UJ’s existing Wayfinder application and separate virtual campus tours.</p><p>The campus, library, Protection Services sign and lecture-room photos are user-supplied reference images. Their APB locations are unverified. The computer lab image and every walking checkpoint remain illustrative placeholders. Every route, both starting points, and the selected lab and classroom are unverified. Do not use the demo directions for walking on campus.</p></section><section class="panel content-section"><h2>How to try it</h2><ol><li>Choose a sample starting point and a destination from the list. “Campus map” shows the supplied aerial reference; “Demo routes” shows illustrative pins and paths.</li><li>Review the sample route on the map and select “Start photo walk”.</li><li>Use the large Forward and Back arrows on the photograph, or the Previous and Next buttons. Read the short direction at each checkpoint.</li><li>Finish the sample route, then choose another destination or share feedback.</li></ol><p>You can use a keyboard: <kbd>Tab</kbd> moves between controls, <kbd>Enter</kbd> activates links and buttons, arrow keys change checkpoints, and <kbd>Esc</kbd> exits navigation.</p></section><section class="panel content-section"><h2>Photos, not 360° views</h2><p>The planned real version uses wide checkpoint photographs taken with an iPhone 13 Pro Max. You move through a sequence with the on-screen arrows. The interface demonstrates a map-to-photo-walk experience for a future authorised 360° campus tour. The current viewer uses still images; it cannot look around a panorama. The campus image is a user-supplied reference with its original attribution. Its date and routes are unverified. The separate Demo routes view is a schematic sample, not an APB survey. No sample route is overlaid on real buildings, and there is no live GPS. A 360° camera would provide the real panoramas for the next phase.</p></section><section class="panel content-section"><h2>Privacy and data</h2><p>No account, database, analytics, payments or location permission is used. Your choices stay in this browser tab and its URL. The static hosting provider handles normal web requests. Feedback is downloaded to your device; the app sends no feedback online.</p><p>Only the current checkpoint image loads during navigation. Destination reference photos load when their cards or summary are viewed, using compressed local files. The building-only campus crop excludes people and entrance controls; the Protection Services reference shows the public sign only. The app needs a connection to load its files and does not promise offline access.</p></section><section class="panel content-section"><h2>If something doesn’t look right</h2><p>A missing image leaves the written direction available and offers a retry. If a future photo does not match your surroundings, pause and ask campus staff for help. Access, opening hours, distances and step-free routes still need to be checked.</p><p>The Protection Services route must end at the public entrance or official sign. Never photograph security equipment, access controls or restricted areas. Don’t include recognisable faces without permission, student cards, personal information, screens with information or vehicle registrations.</p><a class="secondary-btn" href="#feedback">${icon('message')} Share prototype feedback</a></section></div>`;
 }
 
 function feedback() {
@@ -246,17 +252,29 @@ main.addEventListener('input', event => {
   if (event.target.id === 'destination-search') { query = event.target.value; renderDestinations(); }
 });
 main.addEventListener('error', event => {
+  if (event.target.matches?.('[data-map-image]')) {
+    event.target.hidden = true;
+    const container = event.target.parentElement;
+    container.querySelector('.map-reference-loading').hidden = true;
+    container.querySelector('.map-reference-error').hidden = false;
+    return;
+  }
   if (!event.target.matches?.('[data-reference-image]')) return;
   event.target.hidden = true;
   const fallback = event.target.parentElement.querySelector('.reference-fallback');
   if (fallback) fallback.hidden = false;
+}, true);
+main.addEventListener('load', event => {
+  if (!event.target.matches?.('[data-map-image]')) return;
+  event.target.classList.remove('is-loading');
+  event.target.parentElement.querySelector('.map-reference-loading').hidden = true;
 }, true);
 main.addEventListener('change', event => {
   if (event.target.id === 'start-location') {
     startId = event.target.value;
     const start = locations.starts.find(s => s.id === startId);
     document.querySelector('#origin-note').textContent = start.note;
-    document.querySelector('#map-viewport').innerHTML = mapMarkup(layout,locations,graph,{startId});
+    if (mapMode === 'demo') document.querySelector('#map-viewport').innerHTML = mapMarkup(layout,locations,graph,{startId});
     renderDestinations();
     announce(`Starting from ${start.name}. All current routes are unverified samples.`);
   }
@@ -264,18 +282,26 @@ main.addEventListener('change', event => {
 main.addEventListener('click', event => {
   const action = event.target.closest('[data-action]')?.dataset.action;
   if (!action) return;
+  if (action === 'map-mode') {
+    mapMode = event.target.closest('[data-map-mode]').dataset.mapMode;
+    mapZoom = 1; mapPanX = 0; mapPanY = 0;
+    render(false);
+    main.querySelector(`[data-map-mode="${mapMode}"]`)?.focus();
+    announce(mapMode === 'campus' ? 'Campus reference map shown. Sample routes are not overlaid on real buildings.' : 'Illustrative demo routes shown. All positions and directions are unverified samples.');
+  }
   if (action === 'clear-search') { query=''; document.querySelector('#destination-search').value=''; renderDestinations(); document.querySelector('#destination-search').focus(); }
   if (action.startsWith('zoom-')) {
-    mapZoom = action === 'zoom-reset' ? 1 : Math.max(.8, Math.min(1.8, mapZoom + (action === 'zoom-in' ? .2 : -.2)));
+    mapZoom = action === 'zoom-reset' ? 1 : Math.max(.8, Math.min(mapMode === 'campus' ? 4 : 1.8, Math.round((mapZoom + (action === 'zoom-in' ? .2 : -.2))*10)/10));
     const viewport = main.querySelector('#map-viewport');
     if (action === 'zoom-reset') { mapPanX = 0; mapPanY = 0; }
     if (viewport) viewport.style.transform = `translate(${mapPanX}px,${mapPanY}px) scale(${mapZoom})`;
-    announce(`Sample map zoom ${Math.round(mapZoom*100)} percent.`);
+    announce(`Map zoom ${Math.round(mapZoom*100)} percent.`);
   }
   if (action === 'previous') moveStep(-1);
   if (action === 'next') moveStep(1);
   if (action === 'retry-data') { main.innerHTML='<div class="initial-loading" role="status"><span class="spinner"></span> Loading route information…</div>'; boot(); }
   if (action === 'retry-image') render();
+  if (action === 'retry-map') render(false);
 });
 main.addEventListener('submit', event => {
   if (event.target.id !== 'feedback-form') return;

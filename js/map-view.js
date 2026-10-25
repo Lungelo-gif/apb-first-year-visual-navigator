@@ -1,4 +1,9 @@
-import { escapeHTML as e } from './core.js?v=0.3.0';
+import { escapeHTML as e } from './core.js?v=0.4.0';
+
+// Keep the supplied reference intact. Never align invented demo nodes to real buildings.
+export function referenceMapMarkup(image) {
+  return `<div class="campus-map-reference"><div class="map-reference-loading" role="status"><span class="spinner"></span> Loading campus map…</div><img class="is-loading" data-map-image src="${e(image.src)}" alt="${e(image.alt)}" width="${e(image.width)}" height="${e(image.height)}" decoding="async" draggable="false"><div class="map-reference-error" role="status" hidden><strong>Campus map unavailable</strong><p>You can still choose a destination and try its sample photo walk.</p><button class="secondary-btn" data-action="retry-map">Try map again</button></div></div>`;
+}
 
 // Relative drawing positions only. This SVG is not a geographic map or an APB survey.
 export function mapMarkup(layout, locations, graph, options = {}) {

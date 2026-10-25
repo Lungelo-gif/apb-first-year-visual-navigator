@@ -58,6 +58,11 @@ export function escapeHTML(value) {
 export function validateMap(layout, graph) {
   const fail = message => { throw new Error(`Map data: ${message}`); };
   if (layout?.schemaVersion !== 1 || !Number.isFinite(layout.width) || !Number.isFinite(layout.height) || layout.width <= 0 || layout.height <= 0 || !layout.nodes) fail('invalid layout dimensions or schema.');
+  if (layout.referenceImage) {
+    const image = layout.referenceImage;
+    if (!/^assets\/images\/[a-zA-Z0-9_./-]+\.(jpg|jpeg|webp|png)$/.test(image.src || '') || image.src.includes('..')) fail('unsafe campus reference image path.');
+    if (!image.alt || !image.notice || !image.sourceNote || !Number.isFinite(image.width) || !Number.isFinite(image.height) || image.width <= 0 || image.height <= 0) fail('incomplete campus reference image metadata.');
+  }
   for (const id of Object.keys(graph.nodes)) {
     const p = layout.nodes[id];
     if (!p || !Number.isFinite(p.x) || !Number.isFinite(p.y)) fail(`missing layout position for checkpoint ${id}.`);
