@@ -86,3 +86,18 @@ test('out-of-bounds map nodes are rejected rather than drawing an offscreen rout
   const broken=structuredClone(layout);broken.nodes['library-arrival'].x=2000;
   assert.throws(()=>validateMap(broken,graph),/outside the sample layout/);
 });
+
+test('campus reference image is a small local asset with source and accessibility notes', async () => {
+  assert.equal(validateMap(layout,graph),true);
+  const image=layout.referenceImage;
+  const file=await stat(new URL(`../${image.src}`,import.meta.url));
+  assert.ok(file.size>0 && file.size<500000);
+  assert.match(image.alt,/Bunting Road Campus/);
+  assert.match(image.sourceNote,/No sample pins or paths/);
+});
+test('campus reference cannot load a tracking URL or directory traversal', () => {
+  for (const src of ['https://example.com/track.jpg','assets/images/../secret.jpg']) {
+    const broken=structuredClone(layout);broken.referenceImage.src=src;
+    assert.throws(()=>validateMap(broken,graph),/unsafe campus reference image path/);
+  }
+});
