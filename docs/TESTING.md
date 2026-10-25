@@ -98,6 +98,12 @@ Expected sample counts:
 
 ## Version 0.4 campus reference map
 
-23 route/data checks and JavaScript syntax checks passed. Added local-image path validation and a small-asset check. The campus map asset is byte-identical to the uploaded source. AI output was inspected and rejected because labels/block letters changed. The local managed preview daemon remains unavailable; live browser checks follow publication.
+23 route/data checks and JavaScript syntax checks passed. Added local-image path validation and a small-asset check. The campus map asset is byte-identical to the uploaded source. AI output was inspected and rejected because labels/block letters changed. The local managed preview daemon remains unavailable, so checks used the published GitHub Pages app.
 
 Release checks: original image loads with all attribution visible; Campus map is the default; zoom/pan/reset work; switching Demo routes shows the separate SVG and pins; switching back retains no fabricated overlay; destination search, both starts, summary and photo arrows still work; source disclosure and original-image link are accessible; compare phone/desktop layouts. Physical-device and real-campus checks remain pending.
+
+### Version 0.4.1 live verification — 25 October 2026
+
+GitHub Pages workflow 35 completed successfully, and the live entry page loaded app.js?v=0.4.1. The default Campus map loaded the exact 659 × 466 source. Campus zoom/reset, switching to the four demo pins, search filtering, switching back with no demo overlay, selecting a destination from the campus list, and Forward/Back photo controls were checked in Chrome. All four entrance-to-destination journeys completed with the correct arrival; the Library also completed from the alternate walkway start in Demo routes.
+
+Campus home, Demo routes home and campus route overview had no horizontal overflow at 320, 375, 390, 768 and 1,440 CSS pixels. A mobile screenshot initially showed the bottom panel covering the image legend. The map now measures the panel height and fits the image above it; a settled 375-pixel view confirmed the canvas and complete image end above the panel. Original source attribution remains intact. Desktop and phone screenshots were inspected. Physical iPhone/Safari, VoiceOver and deliberate image/data failure injection remain pending.
