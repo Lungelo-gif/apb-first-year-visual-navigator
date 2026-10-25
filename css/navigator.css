@@ -24,6 +24,22 @@ body[data-screen="navigate"] .topbar { display: none; }
 .map-canvas { touch-action: none; cursor: grab; position: absolute; inset: 0 0 0 375px; overflow: hidden; }
 .map-canvas.is-dragging { cursor: grabbing; }
 .map-viewport { width: 100%; height: 100%; transform-origin: center; transition: transform .2s ease; }
+.map-canvas.is-dragging .map-viewport { transition: none; }
+.has-campus-reference { background: #e5e8e2; }
+.campus-map-reference { position: relative; display: grid; place-items: center; width: 100%; height: 100%; padding: 90px 18px 48px; }
+.campus-map-reference > img { display: block; width: 100%; height: 100%; min-height: 0; object-fit: contain; user-select: none; -webkit-user-drag: none; filter: drop-shadow(0 6px 14px #25252518); }
+.campus-map-reference > img.is-loading { opacity: 0; }
+.map-reference-loading, .map-reference-error { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: min(85%, 350px); padding: 20px; color: #303630; background: #fffffff2; border-radius: 12px; font-size: 14px; line-height: 1.6; text-align: center; }
+.map-reference-loading { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.map-reference-error p { margin: 10px 0; }
+.map-view-switch { position: absolute; top: 18px; left: 400px; display: flex; gap: 3px; padding: 4px; border: 1px solid #d5d9cf; border-radius: 12px; background: #fff; box-shadow: 0 3px 12px #0000000a; }
+.map-view-switch button { min-height: 40px; padding: 9px 15px; border-radius: 8px; background: #fff; color: #4d5a49; font-size: 12px; font-weight: 600; }
+.map-view-switch button[aria-pressed="true"] { color: #8d310b; background: #fff0e5; }
+.map-view-switch ~ .map-layout-notice { top: 78px; }
+.campus-map-details { margin-top: 13px; font-size: 12px; line-height: 1.7; color: #625649; }
+.campus-map-details summary { min-height: 36px; }
+.campus-map-details p { margin: 8px 0; }
+.campus-map-details a { color: #8d310b; display: inline-block; padding: 8px 0; }
 .campus-map-svg { display: block; width: 100%; height: 100%; stroke: none; fill: none; }
 .map-ground { fill: #edf0e8; }
 .map-lawn { fill: #dce6ce; }
@@ -147,6 +163,8 @@ summary { cursor: pointer; min-height: 28px; padding: 4px 0; line-height: 1.6; }
 .immersive-photo .image-error { color: #252525; border-radius: 13px; margin: 135px 20px 0; align-self: start; max-width: 380px; }
 
 @media (max-width: 1050px) and (min-width: 761px) {
+  .map-view-switch { left: 327px; }
+  .map-view-switch button { font-size: 11px; padding: 9px 12px; }
   .map-planner { left: 15px; top: 16px; bottom: 16px; width: 293px; padding: 18px; }
   .map-canvas { left: 315px; }
   .map-layout-notice { left: 327px; max-width: calc(100% - 405px); font-size: 9px; }
@@ -155,6 +173,11 @@ summary { cursor: pointer; min-height: 28px; padding: 4px 0; line-height: 1.6; }
   .viewer-destination { max-width: 55%; }
 }
 @media (max-width: 760px) {
+  .campus-map-reference { padding: 90px 7px 0; }
+  .map-view-switch { top: 10px; left: 11px; right: 69px; width: max-content; max-width: calc(100% - 80px); }
+  .map-view-switch button { font-size: 11px; padding: 8px 11px; min-height: 36px; }
+  .map-view-switch ~ .map-layout-notice { top: 63px; font-size: 9px; }
+  .campus-map-details { font-size: 11px; margin-top: 7px; }
   .app-shell { display: block; }
   .sidebar { position: relative; top: auto; height: 64px; min-height: 64px; padding: 9px 13px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; border-bottom: 1px solid #e7e0d9; }
   .brand { flex-direction: row; font-size: 19px; gap: 8px; }
