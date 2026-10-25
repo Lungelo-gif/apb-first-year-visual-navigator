@@ -1,5 +1,5 @@
-import { validateData, validateMap, findPath, searchDestinations, escapeHTML as e } from './core.js?v=0.4.0';
-import { mapMarkup, referenceMapMarkup } from './map-view.js?v=0.4.0';
+import { validateData, validateMap, findPath, searchDestinations, escapeHTML as e } from './core.js?v=0.4.1';
+import { mapMarkup, referenceMapMarkup } from './map-view.js?v=0.4.1';
 
 const icons = {
   compass:'<circle cx="12" cy="12" r="9"/><path d="m16 8-2.6 5.4L8 16l2.6-5.4L16 8Z"/>',
@@ -26,9 +26,9 @@ const icons = {
 };
 const icon = name => `<svg viewBox="0 0 24 24" aria-hidden="true">${icons[name] || icons.pin}</svg>`;
 const main = document.querySelector('main');
-const release = '0.4.0';
+const release = '0.4.1';
 const announcer = document.querySelector('#announcer');
-let locations, graph, layout, startId = 'sample-entrance', query = '', mapMode = 'campus', mapZoom = 1, mapPanX = 0, mapPanY = 0, mapDrag, imageTimer, loadController, dockObserver;
+let locations, graph, layout, startId = 'sample-entrance', query = '', mapMode = 'campus', mapZoom = 1, mapPanX = 0, mapPanY = 0, mapDrag, imageTimer, loadController, dockObserver, plannerObserver;
 const announce = message => { announcer.textContent = message; };
 const href = (screen, destination, step) => `#${screen}/${encodeURIComponent(destination)}?from=${encodeURIComponent(startId)}${step !== undefined ? `&step=${step}` : ''}`;
 const banner = () => `<div class="demo-banner">${icon('info')}<p><strong>Demo routes · not verified for walking.</strong> Checkpoint illustrations and directions are samples. Confirm the real APB route before using it on campus.</p></div>`;
@@ -184,6 +184,7 @@ function render(shouldFocus = true) {
   if (!locations || !graph) return;
   clearTimeout(imageTimer);
   dockObserver?.disconnect();
+  plannerObserver?.disconnect();
   mapDrag = null;
   const {parts, params} = currentScreen();
   const screen = parts[0];
@@ -202,6 +203,13 @@ function render(shouldFocus = true) {
         navigate(context,step);
       }
     } else throw new Error('That page isn’t part of this prototype. Choose a destination to get started.');
+    const planner = main.querySelector('.map-planner');
+    if (planner) {
+      const experience = main.querySelector('.map-experience');
+      const positionMap = () => experience.style.setProperty('--planner-height', `${planner.getBoundingClientRect().height}px`);
+      positionMap();
+      if (typeof ResizeObserver === 'function') { plannerObserver = new ResizeObserver(positionMap); plannerObserver.observe(planner); }
+    }
     document.title = `${main.querySelector('h1')?.textContent || 'Home'} | APB First-Year Visual Navigator`;
   } catch (error) {
     document.body.dataset.screen = 'error';

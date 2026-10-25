@@ -1,4 +1,4 @@
-import { escapeHTML as e } from './core.js?v=0.4.0';
+import { escapeHTML as e } from './core.js?v=0.4.1';
 
 // Keep the supplied reference intact. Never align invented demo nodes to real buildings.
 export function referenceMapMarkup(image) {
